@@ -11,8 +11,18 @@ import inquiryRoutes from './routes/inquiries';
 const app = express();
 
 // Middleware
-app.use(cors({ origin: ['http://localhost:3000', 'http://localhost:8081'], credentials: true }));
-// Note: For mobile device testing, use cors() without origin restriction
+// Allow web frontend and mobile app (Expo Go uses device IP, not localhost)
+app.use(cors({
+  origin: (origin, callback) => {
+    // Allow requests with no origin (mobile apps, Postman) and localhost
+    if (!origin || origin.startsWith('http://localhost') || origin.startsWith('http://192.168')) {
+      callback(null, true);
+    } else {
+      callback(null, true); // In dev, allow all origins
+    }
+  },
+  credentials: true,
+}));
 app.use(express.json());
 
 // Routes

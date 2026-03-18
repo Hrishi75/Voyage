@@ -74,7 +74,7 @@ export default function DashboardScreen() {
         ListEmptyComponent={
           !loading ? (
             <EmptyState
-              icon="{'✈️'}"
+              icon="✈️"
               title="No Inquiries Yet"
               subtitle="Start exploring our luxury travel packages and book your dream trip."
               actionLabel="Browse Packages"

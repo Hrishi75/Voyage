@@ -28,10 +28,12 @@ api.interceptors.request.use(async (config) => {
 // Response interceptor for error handling
 api.interceptors.response.use(
   (response) => response,
-  (error) => {
+  async (error) => {
     if (error.response?.status === 401) {
-      // Token expired or invalid - will be handled by auth store
-      storage.removeToken();
+      await storage.removeToken();
+      // Dynamic import to avoid circular dependency
+      const { useAuthStore } = require('../stores/authStore');
+      useAuthStore.getState().logout();
     }
     return Promise.reject(error);
   }

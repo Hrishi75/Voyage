@@ -8,3 +8,4 @@ export { default as EmptyState } from './EmptyState';
 export { default as ImageCard } from './ImageCard';
 export { default as StepIndicator } from './StepIndicator';
 export { default as TabPill } from './TabPill';
+export { default as ScreenLoader } from './ScreenLoader';
