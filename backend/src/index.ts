@@ -11,7 +11,8 @@ import inquiryRoutes from './routes/inquiries';
 const app = express();
 
 // Middleware
-app.use(cors({ origin: ['http://localhost:3000'], credentials: true }));
+app.use(cors({ origin: ['http://localhost:3000', 'http://localhost:8081'], credentials: true }));
+// Note: For mobile device testing, use cors() without origin restriction
 app.use(express.json());
 
 // Routes
